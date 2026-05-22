@@ -1,0 +1,11 @@
+{
+    "architecture": "VGG16",
+    "input_size": [
+        150,
+        150
+    ],
+    "normalization": "divide_255",
+    "framework": "tensorflow/keras",
+    "tensorflow_version": "2.20.0",
+    "num_classes": 50
+}
