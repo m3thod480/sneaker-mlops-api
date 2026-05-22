@@ -1,10 +1,11 @@
 import numpy as np
 from PIL import Image
 
-from app.model_loader import model, class_indices, model_info
+from app.model_loader import get_model, get_class_indices, get_model_info
 
 
 def preprocess_image(image: Image.Image):
+    model_info = get_model_info()
     input_size = model_info["input_size"]
 
     image = image.convert("RGB")
@@ -18,6 +19,9 @@ def preprocess_image(image: Image.Image):
 
 
 def predict(image: Image.Image):
+    model = get_model()
+    class_indices = get_class_indices()
+
     processed_image = preprocess_image(image)
 
     predictions = model.predict(processed_image)[0]

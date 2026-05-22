@@ -3,29 +3,38 @@ from pathlib import Path
 
 import tensorflow as tf
 
+from app.config import MODEL_PATH, CLASS_INDICES_PATH, MODEL_INFO_PATH
+from app.model_downloader import download_model_if_needed
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-MODEL_DIR = BASE_DIR / "model"
+_model = None
+_class_indices = None
+_model_info = None
 
-MODEL_PATH = MODEL_DIR / "sneaker_classifier.keras"
-CLASS_INDICES_PATH = MODEL_DIR / "class_indices.json"
-MODEL_INFO_PATH = MODEL_DIR / "model_info.json"
+def get_model():
+    global _model
 
+    if _model is None:
+        download_model_if_needed()
+        _model = tf.keras.models.load_model(MODEL_PATH)
 
-def load_model():
-    return tf.keras.models.load_model(MODEL_PATH)
-
-
-def load_class_indices():
-    with open(CLASS_INDICES_PATH, "r", encoding="utf-8") as file:
-        return json.load(file)
-
-
-def load_model_info():
-    with open(MODEL_INFO_PATH, "r", encoding="utf-8") as file:
-        return json.load(file)
+    return _model
 
 
-model = load_model()
-class_indices = load_class_indices()
-model_info = load_model_info()
+def get_class_indices():
+    global _class_indices
+
+    if _class_indices is None:
+        with open(CLASS_INDICES_PATH, "r", encoding="utf-8") as file:
+            _class_indices = json.load(file)
+
+    return _class_indices
+
+
+def get_model_info():
+    global _model_info
+
+    if _model_info is None:
+        with open(MODEL_INFO_PATH, "r", encoding="utf-8") as file:
+            _model_info = json.load(file)
+
+    return _model_info
