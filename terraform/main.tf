@@ -36,3 +36,16 @@ resource "aws_s3_bucket_public_access_block" "model_artifacts_public_block" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+
+resource "aws_ecr_repository" "app_repository" {
+  name = "sneaker-mlops-api"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+
+  tags = {
+    Project = "sneaker-mlops-api"
+    Purpose = "docker-images"
+  }
+}

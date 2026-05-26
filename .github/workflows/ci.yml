@@ -43,6 +43,19 @@ jobs:
         run: |
           python -m pytest
 
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
       - name: Build Docker image
         run: |
           docker build -t sneaker-mlops-api .
+
+      - name: Tag Docker image
+        run: |
+          docker tag sneaker-mlops-api:latest 810498828675.dkr.ecr.eu-west-1.amazonaws.com/sneaker-mlops-api:latest
+          docker tag sneaker-mlops-api:latest 810498828675.dkr.ecr.eu-west-1.amazonaws.com/sneaker-mlops-api:${{ github.sha }}
+
+      - name: Push Docker image to ECR
+        run: |
+          docker push 810498828675.dkr.ecr.eu-west-1.amazonaws.com/sneaker-mlops-api:latest
+          docker push 810498828675.dkr.ecr.eu-west-1.amazonaws.com/sneaker-mlops-api:${{ github.sha }}
