@@ -3,7 +3,11 @@ import io
 from fastapi import FastAPI, UploadFile, File
 from PIL import Image
 
+from fastapi.responses import FileResponse
+from pathlib import Path
+
 from app.predictor import predict
+from app.config import BASE_DIR
 
 
 app = FastAPI(
@@ -15,9 +19,7 @@ app = FastAPI(
 
 @app.get("/")
 def root():
-    return {
-        "message": "Sneaker Classifier API is running"
-    }
+    return FileResponse(BASE_DIR / "app" / "static" / "index.html")
 
 
 @app.get("/health")
