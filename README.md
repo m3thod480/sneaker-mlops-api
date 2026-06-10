@@ -4,6 +4,8 @@ Proyecto personal para practicar el despliegue de modelos de Machine Learning en
 
 La idea del proyecto es sencilla: entrenar un modelo capaz de clasificar imágenes de zapatillas y exponerlo mediante una API para realizar inferencias. Además del modelo, el objetivo principal era trabajar todo el proceso de despliegue y automatización en la nube.
 
+![Diagrama de arquitectura](Diagrama.png)
+
 ## Tecnologías utilizadas
 
 * Python
