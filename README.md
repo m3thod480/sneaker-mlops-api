@@ -19,4 +19,4 @@ La idea del proyecto es sencilla: entrenar un modelo capaz de clasificar imágen
 
 ## Objetivos del proyecto
 
-Se ha tratado de llevar un modelo que se entrenó hace un año a una idea de e-commerce real, donde se propone un modelo de búsqueda a través de visión artificial a través de un portal web.
+Se ha tratado de llevar un modelo que se entrenó hace un año a una idea de e-commerce real, donde se propone un modelo de búsqueda a través de visión artificial en un portal web.
