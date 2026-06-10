@@ -14,7 +14,6 @@ La idea del proyecto es sencilla: entrenar un modelo capaz de clasificar imágen
 * Amazon ECR
 * Terraform
 * GitHub Actions
-* CloudWatch
 
 ## Objetivos del proyecto
 
